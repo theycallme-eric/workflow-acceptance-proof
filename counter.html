@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Counter</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Counter</h1>
+      <output id="counter-value" aria-live="polite">0</output>
+      <button id="increment" type="button">Increment</button>
+      <button id="reset" type="button">Reset</button>
+    </main>
+    <script type="module">
+      import { createCounter } from "./src/counter.js";
+
+      const counter = createCounter();
+      const valueEl = document.getElementById("counter-value");
+
+      const render = () => {
+        valueEl.textContent = String(counter.value);
+      };
+
+      document.getElementById("increment").addEventListener("click", () => {
+        counter.increment();
+        render();
+      });
+
+      document.getElementById("reset").addEventListener("click", () => {
+        counter.reset();
+        render();
+      });
+
+      render();
+    </script>
+  </body>
+</html>
